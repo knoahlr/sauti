@@ -41,18 +41,25 @@ For a deeper architecture overview, read `docs/structure.md`.
   sudo apt-get update && sudo apt-get install -y \
     build-essential pkg-config git curl \
     ruby3.3-dev libpq-dev libyaml-dev libicu-dev libidn11-dev \
-    libxml2-dev libxslt1-dev libssl-dev zlib1g-dev
+    libxml2-dev libxslt1-dev libssl-dev zlib1g-dev libvips libvips-dev
   ```
+
+# Ensure PostgreSQL role matches your Unix user (required for bin/setup)
+
+sudo -u postgres createuser -s $(whoami) || true
+
+````
 
 ## Quick Start (Local Development)
 
 1. Clone the fork and install dependencies:
-   ```bash
-   git clone git@github.com:knoahlr/sauti.git
-   cd sauti
-   bundle install
-   yarn install --frozen-lockfile
-   ```
+ ```bash
+ git clone git@github.com:knoahlr/sauti.git
+ cd sauti
+ bundle install
+ yarn install --frozen-lockfile
+````
+
 2. Provision databases, Redis, and assets:
    ```bash
    RAILS_ENV=development bin/setup
@@ -89,6 +96,7 @@ Planned enhancements (see `docs/fork_roadmap.md`): WebRTC civic rooms, advisory 
 ## Documentation Index
 
 - `docs/fork_roadmap.md` — Phase-by-phase plan for the YouthVoices fork.
+- `docs/database_setup.md` — PostgreSQL role/database configuration options.
 - `docs/phase0_status.md` & `docs/phase0_checklist.md` — Current setup status and pending tasks.
 - `docs/structure.md` — Detailed description of the codebase layout and technologies.
 - `docs/DEVELOPMENT.md` — Upstream Mastodon development guide (still relevant for environment setup).
