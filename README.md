@@ -1,6 +1,6 @@
 # Sauti — YouthVoices Civic Platform
 
-Sauti is the dedicated fork of Mastodon that powers the YouthVoices civic engagement network. The platform blends social timelines with structured civic rooms so Kenyan youth (18–40) can coordinate discussions, run advisory polls, and surface county-to-national issues in real time.
+Sauti is the dedicated fork of Mastodon that powers the YouthVoices civic platform advancing democratic principles. It blends social timelines with structured civic rooms so Kenyan youth (18–40) can coordinate discussions, run advisory polls, and surface county-to-national issues in real time.
 
 ## Vision & Roadmap Alignment
 - Deliver a mobile-friendly civic commons with text, audio, and video rooms (Phase 2) built on Mastodon’s reliable Rails + React foundation.

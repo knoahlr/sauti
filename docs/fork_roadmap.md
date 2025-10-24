@@ -31,7 +31,7 @@
   - Harden authentication: confirm National ID integration approach, MFA provider, and rate-limiting.
   - Implement civic landing pages and mission-driven content surfaces.
 - **Deliverables**
-  - Updated front-end layouts, theming, and copy.
+  - Updated front-end layouts, theming, and copy (tracked in `docs/phase1_status.md`).
   - User segmentation rules and data models for geographic groupings.
 - **Key Questions**
   - Which identity provider (IDEMIA, government API, custom KYC) will supply verified youth credentials?

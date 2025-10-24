@@ -25,6 +25,26 @@ const messages = defineMessages({
   silencedExplanation: { id: 'about.domain_blocks.silenced.explanation', defaultMessage: 'You will generally not see profiles and content from this server, unless you explicitly look it up or opt into it by following.' },
   suspended: { id: 'about.domain_blocks.suspended.title', defaultMessage: 'Suspended' },
   suspendedExplanation: { id: 'about.domain_blocks.suspended.explanation', defaultMessage: 'No data from this server will be processed, stored or exchanged, making any interaction or communication with users from this server impossible.' },
+  heroTagline: { id: 'about.hero.tagline', defaultMessage: 'Advancing democratic principles for Kenyan youth' },
+  heroTitle: { id: 'about.hero.title', defaultMessage: 'Your voice matters here' },
+  heroSubtitle: { id: 'about.hero.subtitle', defaultMessage: 'Join thousands of young Kenyans shaping our democratic future through civic rooms, advisory polls, and community moderation.' },
+  heroCtaJoin: { id: 'about.hero.cta.join', defaultMessage: 'Join Sauti' },
+  heroCtaExplore: { id: 'about.hero.cta.explore', defaultMessage: 'Explore civic conversations' },
+  statsCounties: { id: 'about.hero.stats.counties', defaultMessage: 'Counties represented' },
+  statsPositions: { id: 'about.hero.stats.positions', defaultMessage: 'Leadership positions' },
+  statsSupport: { id: 'about.hero.stats.support', defaultMessage: 'Support availability' },
+  featuresHeading: { id: 'about.features.heading', defaultMessage: 'Built for meaningful participation' },
+  featuresCopy: { id: 'about.features.copy', defaultMessage: 'Sauti provides secure, transparent spaces where young people can collaborate, deliberate, and guide democratic action.' },
+  featureRoomsTitle: { id: 'about.features.rooms.title', defaultMessage: 'Unified civic rooms' },
+  featureRoomsCopy: { id: 'about.features.rooms.copy', defaultMessage: 'Discuss county, constituency, and ward priorities with real-time updates and persistent context.' },
+  featurePollsTitle: { id: 'about.features.polls.title', defaultMessage: 'Advisory polling' },
+  featurePollsCopy: { id: 'about.features.polls.copy', defaultMessage: 'Launch transparent polls, share verifiable outcomes, and feed insights back to your community.' },
+  featureModerationTitle: { id: 'about.features.moderation.title', defaultMessage: 'Community-led moderation' },
+  featureModerationCopy: { id: 'about.features.moderation.copy', defaultMessage: 'Empower trusted youth leaders with reporting, escalation, and safety tooling that keeps dialogue healthy.' },
+  featureSecurityTitle: { id: 'about.features.security.title', defaultMessage: 'Secure identity' },
+  featureSecurityCopy: { id: 'about.features.security.copy', defaultMessage: 'National ID verification and multi-factor authentication keep participation accountable while protecting privacy.' },
+  featureAccessTitle: { id: 'about.features.access.title', defaultMessage: 'Accessible everywhere' },
+  featureAccessCopy: { id: 'about.features.access.copy', defaultMessage: 'Optimized for low-bandwidth devices with English and Swahili content on the roadmap.' },
 });
 
 const severityMessages = {
@@ -76,36 +96,92 @@ class About extends PureComponent {
   render () {
     const { multiColumn, intl, server, extendedDescription, domainBlocks, locale } = this.props;
     const isLoading = server.get('isLoading');
+    const stats = [
+      { value: '47', label: intl.formatMessage(messages.statsCounties) },
+      { value: '6', label: intl.formatMessage(messages.statsPositions) },
+      { value: '24/7', label: intl.formatMessage(messages.statsSupport) },
+    ];
+
+    const features = [
+      { title: intl.formatMessage(messages.featureRoomsTitle), description: intl.formatMessage(messages.featureRoomsCopy) },
+      { title: intl.formatMessage(messages.featurePollsTitle), description: intl.formatMessage(messages.featurePollsCopy) },
+      { title: intl.formatMessage(messages.featureModerationTitle), description: intl.formatMessage(messages.featureModerationCopy) },
+      { title: intl.formatMessage(messages.featureSecurityTitle), description: intl.formatMessage(messages.featureSecurityCopy) },
+      { title: intl.formatMessage(messages.featureAccessTitle), description: intl.formatMessage(messages.featureAccessCopy) },
+    ];
 
     return (
       <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
-        <div className='scrollable about'>
-          <div className='about__header'>
-            <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
-            <h1>{isLoading ? <Skeleton width='10ch' /> : server.get('domain')}</h1>
-            <p><FormattedMessage id='about.powered_by' defaultMessage='Decentralized social media powered by {mastodon}' values={{ mastodon: <a href='https://joinmastodon.org' className='about__mail' target='_blank' rel='noopener'>Mastodon</a> }} /></p>
-          </div>
-
-          <div className='about__meta'>
-            <div className='about__meta__column'>
-              <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
-
-              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
+        <div className='scrollable about about--sauti'>
+          <div className='about-sauti'>
+            <div className='about-sauti__hero'>
+              <div className='about-sauti__hero__content'>
+                <span className='about-sauti__pill'><FormattedMessage {...messages.heroTagline} /></span>
+                <h1 className='about-sauti__hero-title'>
+                  <FormattedMessage {...messages.heroTitle} />
+                </h1>
+                <p className='about-sauti__hero-subtitle'>
+                  <FormattedMessage {...messages.heroSubtitle} />
+                </p>
+                <div className='about-sauti__hero-actions'>
+                  <a className='about-sauti__cta about-sauti__cta--primary' href='/auth/sign_up'>
+                    <FormattedMessage {...messages.heroCtaJoin} />
+                  </a>
+                  <a className='about-sauti__cta about-sauti__cta--secondary' href='/explore'>
+                    <FormattedMessage {...messages.heroCtaExplore} />
+                  </a>
+                </div>
+                <div className='about-sauti__stats'>
+                  {stats.map(stat => (
+                    <div className='about-sauti__stat' key={stat.label}>
+                      <span className='about-sauti__stat-value'>{stat.value}</span>
+                      <span className='about-sauti__stat-label'>{stat.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className='about-sauti__hero__media'>
+                <ServerHeroImage blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about-sauti__hero-image' />
+              </div>
             </div>
 
-            <hr className='about__meta__divider' />
+            <div className='about-sauti__features'>
+              <div className='about-sauti__features-header'>
+                <h2><FormattedMessage {...messages.featuresHeading} /></h2>
+                <p><FormattedMessage {...messages.featuresCopy} /></p>
+              </div>
+              <div className='about-sauti__features-grid'>
+                {features.map(feature => (
+                  <div className='about-sauti__feature-card' key={feature.title}>
+                    <h3>{feature.title}</h3>
+                    <p>{feature.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-            <div className='about__meta__column'>
-              <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
+            <div className='about__meta about-sauti__meta'>
+              <div className='about__meta__column'>
+                <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-              {isLoading ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.getIn(['contact', 'email'])}`}>{server.getIn(['contact', 'email'])}</a>}
+                <Account id={server.getIn(['contact', 'account', 'id'])} size={36} minimal />
+              </div>
+
+              <hr className='about__meta__divider' />
+
+              <div className='about__meta__column'>
+                <h4><FormattedMessage id='about.contact' defaultMessage='Contact:' /></h4>
+
+                {isLoading ? <Skeleton width='10ch' /> : <a className='about__mail' href={`mailto:${server.getIn(['contact', 'email'])}`}>{server.getIn(['contact', 'email'])}</a>}
+              </div>
             </div>
           </div>
 
-          <Section open title={intl.formatMessage(messages.title)}>
-            {extendedDescription.get('isLoading') ? (
-              <>
-                <Skeleton width='100%' />
+          <div className='about-sauti__details'>
+            <Section open title={intl.formatMessage(messages.title)}>
+              {extendedDescription.get('isLoading') ? (
+                <>
+                  <Skeleton width='100%' />
                 <br />
                 <Skeleton width='100%' />
                 <br />
@@ -121,14 +197,14 @@ class About extends PureComponent {
             ) : (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
             ))}
-          </Section>
+            </Section>
 
-          <RulesSection />
+            <RulesSection />
 
-          <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
-            {domainBlocks.get('isLoading') ? (
-              <>
-                <Skeleton width='100%' />
+            <Section title={intl.formatMessage(messages.blocks)} onOpen={this.handleDomainBlocksOpen}>
+              {domainBlocks.get('isLoading') ? (
+                <>
+                  <Skeleton width='100%' />
                 <br />
                 <Skeleton width='70%' />
               </>
@@ -151,10 +227,11 @@ class About extends PureComponent {
                   </div>
                 )}
               </>
-            ) : (
-              <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
-            ))}
-          </Section>
+              ) : (
+                <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>
+              ))}
+            </Section>
+          </div>
 
           <LinkFooter />
 

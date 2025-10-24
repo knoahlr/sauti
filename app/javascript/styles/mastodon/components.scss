@@ -10360,6 +10360,254 @@ noscript {
   }
 }
 
+.about--sauti {
+  padding: 24px;
+  border-top: none;
+
+  @media screen and (min-width: $no-gap-breakpoint) {
+    border-radius: 12px;
+  }
+
+  .about-sauti {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .about-sauti__hero {
+    position: relative;
+    background: linear-gradient(135deg, #036857, #b91c1c);
+    color: #fff;
+    border-radius: 16px;
+    padding: 32px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    @media screen and (min-width: 900px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
+    }
+  }
+
+  .about-sauti__hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about-sauti__pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .about-sauti__hero-title {
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 700;
+
+    @media screen and (min-width: 900px) {
+      font-size: 42px;
+    }
+  }
+
+  .about-sauti__hero-subtitle {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .about-sauti__hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .about-sauti__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 12px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .about-sauti__cta--primary {
+    background: linear-gradient(135deg, rgba(4, 120, 87, 0.95), rgba(185, 28, 28, 0.95));
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+    &:hover,
+    &:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  .about-sauti__cta--secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    &:hover,
+    &:focus {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  .about-sauti__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .about-sauti__stat {
+    min-width: 140px;
+    border-radius: 12px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .about-sauti__stat-value {
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .about-sauti__stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .about-sauti__hero__media {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    margin-inline: auto;
+
+    @media screen and (min-width: 900px) {
+      margin-inline: 0;
+    }
+  }
+
+  .about-sauti__hero-image {
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .about-sauti__features {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .about-sauti__features-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+
+    h2 {
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--primary-text-color);
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.6;
+      color: $darker-text-color;
+    }
+  }
+
+  .about-sauti__features-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .about-sauti__feature-card {
+    background: var(--background-color);
+    border: 1px solid var(--background-border-color);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--primary-text-color);
+    }
+
+    p {
+      font-size: 15px;
+      color: $dark-text-color;
+      line-height: 1.6;
+    }
+
+    &:hover,
+    &:focus-within {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 28px rgba(15, 23, 42, 0.12);
+    }
+  }
+
+  .about-sauti__meta {
+    margin-bottom: 0;
+    background: var(--background-color);
+    border-radius: 12px;
+
+    @media screen and (max-width: 600px) {
+      padding: 0;
+      border: none;
+      background: transparent;
+    }
+  }
+
+  .about-sauti__details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .about__section {
+    margin-bottom: 0;
+  }
+
+  .about__footer {
+    margin-top: 40px;
+  }
+}
+
 .notification-list {
   position: fixed;
   bottom: 2rem;

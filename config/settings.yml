@@ -2,10 +2,10 @@
 # important settings can be changed from the admin interface.
 
 defaults: &defaults
-  site_title: Mastodon
-  site_short_description: ''
-  site_description: ''
-  site_extended_description: ''
+  site_title: Sauti
+  site_short_description: 'YouthVoices civic platform advancing democratic principles'
+  site_description: 'Sauti advances democratic principles by blending social timelines, civic forums, and advisory polling for Kenyan youth.'
+  site_extended_description: 'Sauti is the YouthVoices fork of Mastodon—a civic platform advancing democratic principles through county-to-national discussion spaces, live civic rooms, and transparent advisory polling.'
   site_terms: ''
   site_contact_username: ''
   site_contact_email: ''
