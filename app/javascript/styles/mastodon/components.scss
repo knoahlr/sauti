@@ -10385,7 +10385,7 @@ noscript {
     flex-direction: column;
     gap: 24px;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (width >= 900px) {
       flex-direction: row;
       align-items: center;
       gap: 40px;
@@ -10407,7 +10407,7 @@ noscript {
     gap: 6px;
     padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 15%);
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -10419,7 +10419,7 @@ noscript {
     line-height: 1.1;
     font-weight: 700;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (width >= 900px) {
       font-size: 42px;
     }
   }
@@ -10427,7 +10427,7 @@ noscript {
   .about-sauti__hero-subtitle {
     font-size: 16px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 90%);
   }
 
   .about-sauti__hero-actions {
@@ -10445,30 +10445,36 @@ noscript {
     font-size: 15px;
     font-weight: 600;
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .about-sauti__cta--primary {
-    background: linear-gradient(135deg, rgba(4, 120, 87, 0.95), rgba(185, 28, 28, 0.95));
+    background: linear-gradient(
+      135deg,
+      rgba(4, 120, 87, 95%),
+      rgba(185, 28, 28, 95%)
+    );
     color: #fff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 20%);
 
     &:hover,
     &:focus {
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 25%);
     }
   }
 
   .about-sauti__cta--secondary {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 15%);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 35%);
 
     &:hover,
     &:focus {
       transform: translateY(-2px);
-      background: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 25%);
     }
   }
 
@@ -10483,7 +10489,7 @@ noscript {
     min-width: 140px;
     border-radius: 12px;
     padding: 14px 18px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 15%);
     backdrop-filter: blur(4px);
     display: flex;
     flex-direction: column;
@@ -10500,7 +10506,7 @@ noscript {
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 85%);
   }
 
   .about-sauti__hero__media {
@@ -10510,7 +10516,7 @@ noscript {
     max-width: 420px;
     margin-inline: auto;
 
-    @media screen and (min-width: 900px) {
+    @media screen and (width >= 900px) {
       margin-inline: 0;
     }
   }
@@ -10519,7 +10525,7 @@ noscript {
     width: 100%;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 25%);
   }
 
   .about-sauti__features {
@@ -10558,8 +10564,10 @@ noscript {
     border: 1px solid var(--background-border-color);
     border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 8%);
+    transition:
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
 
     h3 {
       font-size: 18px;
@@ -10577,7 +10585,7 @@ noscript {
     &:hover,
     &:focus-within {
       transform: translateY(-4px);
-      box-shadow: 0 18px 28px rgba(15, 23, 42, 0.12);
+      box-shadow: 0 18px 28px rgba(15, 23, 42, 12%);
     }
   }
 
@@ -10586,7 +10594,7 @@ noscript {
     background: var(--background-color);
     border-radius: 12px;
 
-    @media screen and (max-width: 600px) {
+    @media screen and (width <= 600px) {
       padding: 0;
       border: none;
       background: transparent;
