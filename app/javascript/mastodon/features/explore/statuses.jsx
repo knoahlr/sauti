@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { PureComponent } from 'react';
 
-import { FormattedMessage } from 'react-intl';
-
-import { withRouter } from 'react-router-dom';
+import { defineMessages, FormattedMessage } from 'react-intl';
 
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
@@ -12,10 +10,15 @@ import { debounce } from 'lodash';
 
 
 import { fetchTrendingStatuses, expandTrendingStatuses } from 'mastodon/actions/trends';
-import { DismissableBanner } from 'mastodon/components/dismissable_banner';
 import StatusList from 'mastodon/components/status_list';
 import { getStatusList } from 'mastodon/selectors';
-import { WithRouterPropTypes } from 'mastodon/utils/react_router';
+
+const messages = defineMessages({
+  countyFilterActive: {
+    id: 'explore.county_filter.active',
+    defaultMessage: 'Focused on {county}',
+  },
+});
 
 const mapStateToProps = state => ({
   statusIds: getStatusList(state, 'trending'),
@@ -31,19 +34,32 @@ class Statuses extends PureComponent {
     hasMore: PropTypes.bool,
     multiColumn: PropTypes.bool,
     dispatch: PropTypes.func.isRequired,
-    ...WithRouterPropTypes,
+    countyFilter: PropTypes.string,
+    countyLabel: PropTypes.string,
   };
 
   componentDidMount () {
-    const { dispatch, statusIds, history } = this.props;
+    this.loadTrending(true);
+  }
 
-    // If we're navigating back to the screen, do not trigger a reload
-    if (history.action === 'POP' && statusIds.size > 0) {
+  componentDidUpdate (prevProps) {
+    const prevCounty = prevProps.countyFilter || null;
+    const nextCounty = this.props.countyFilter || null;
+
+    if (prevCounty !== nextCounty) {
+      this.loadTrending(true);
+    }
+  }
+
+  loadTrending = (force = false) => {
+    const { dispatch, statusIds, countyFilter } = this.props;
+
+    if (!force && statusIds && statusIds.size > 0) {
       return;
     }
 
-    dispatch(fetchTrendingStatuses());
-  }
+    dispatch(fetchTrendingStatuses({ county: countyFilter || undefined, force }));
+  };
 
   handleLoadMore = debounce(() => {
     const { dispatch } = this.props;
@@ -51,27 +67,34 @@ class Statuses extends PureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { isLoading, hasMore, statusIds, multiColumn } = this.props;
+    const { isLoading, hasMore, statusIds, multiColumn, countyLabel } = this.props;
 
     const emptyMessage = <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />;
 
     return (
-      <StatusList
-        trackScroll
-        alwaysPrepend
-        timelineId='explore'
-        statusIds={statusIds}
-        scrollKey='explore-statuses'
-        hasMore={hasMore}
-        isLoading={isLoading}
-        onLoadMore={this.handleLoadMore}
-        emptyMessage={emptyMessage}
-        bindToDocument={!multiColumn}
-        withCounters
-      />
+      <>
+        {countyLabel && (
+          <div className='explore__county-subhead'>
+            <FormattedMessage {...messages.countyFilterActive} values={{ county: countyLabel }} />
+          </div>
+        )}
+        <StatusList
+          trackScroll
+          alwaysPrepend
+          timelineId='explore'
+          statusIds={statusIds}
+          scrollKey='explore-statuses'
+          hasMore={hasMore}
+          isLoading={isLoading}
+          onLoadMore={this.handleLoadMore}
+          emptyMessage={emptyMessage}
+          bindToDocument={!multiColumn}
+          withCounters
+        />
+      </>
     );
   }
 
 }
 
-export default connect(mapStateToProps)(withRouter(Statuses));
+export default connect(mapStateToProps)(Statuses);

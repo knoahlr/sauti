@@ -1,0 +1,250 @@
+// Youth Voices Purple Theme
+$yv-purple: #9b59b6;
+$yv-purple-dark: #8e44ad;
+$yv-purple-darker: #7d3c98;
+$yv-text-light: #f8f9fa;
+$yv-text-muted: rgba(255, 255, 255, 85%);
+$yv-bg-dark: #111019;
+$yv-bg-darker: #05050a;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.landing-page-body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  background: $yv-bg-darker;
+  color: $yv-text-light;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.landing-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+
+  @media (width >= 900px) {
+    grid-template-columns: 1.8fr 1fr;
+  }
+}
+
+.landing-map-side {
+  background: radial-gradient(circle at top right, #1d1b2a 0%, $yv-bg-dark 60%);
+  padding: 48px 24px 48px clamp(24px, 5vw, 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (width >= 900px) {
+    padding: 60px clamp(40px, 6vw, 120px);
+  }
+}
+
+.landing-content {
+  max-width: 960px;
+  width: 100%;
+}
+
+.landing-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: $yv-text-light;
+  margin-bottom: 16px;
+  line-height: 1.2;
+
+  @media (width >= 900px) {
+    font-size: 48px;
+  }
+}
+
+.landing-subtitle {
+  font-size: 18px;
+  color: $yv-text-muted;
+  margin-bottom: 40px;
+  line-height: 1.5;
+}
+
+.landing-map-wrapper {
+  margin-bottom: 24px;
+  position: relative;
+  min-height: clamp(360px, 65vh, 780px);
+  width: 100%;
+  overflow: hidden;
+
+  .about-sauti__map {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .about-sauti__leaflet {
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 35% 25%,
+      #403b64,
+      #141225 55%,
+      #05050a
+    );
+  }
+
+  .about-sauti__map-overlay,
+  .about-sauti__map-tooltip {
+    display: none;
+  }
+
+  .about-sauti__map-label {
+    color: rgba(248, 249, 255, 92%);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 10px rgba(5, 5, 10, 70%),
+      0 4px 12px rgba(0, 0, 0, 85%);
+    letter-spacing: 0.05em;
+  }
+
+  .leaflet-control-zoom {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 45%);
+    overflow: hidden;
+
+    a {
+      background: rgba(10, 10, 20, 80%);
+      color: #f1e8ff;
+      border: 1px solid rgba(255, 255, 255, 5%);
+
+      &:hover {
+        background: rgba(155, 89, 182, 85%);
+        color: #fff;
+      }
+    }
+  }
+}
+
+.landing-instruction {
+  text-align: center;
+  font-size: 15px;
+  color: $yv-text-muted;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.landing-signup-side {
+  background: linear-gradient(165deg, $yv-purple-darker, $yv-purple-dark 70%);
+  padding: 40px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (width >= 900px) {
+    padding: 60px 40px;
+  }
+}
+
+.landing-signup-card {
+  max-width: 400px;
+  width: 100%;
+}
+
+.landing-signup-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.landing-signup-description {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 90%);
+  line-height: 1.6;
+  margin-bottom: 32px;
+}
+
+.landing-signup-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.landing-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+
+  &:focus {
+    outline: 2px solid rgba(255, 255, 255, 50%);
+    outline-offset: 2px;
+  }
+}
+
+.landing-button-explore {
+  background: linear-gradient(135deg, $yv-purple, $yv-purple-dark);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 30%);
+
+  &:hover {
+    background: linear-gradient(135deg, $yv-purple-dark, $yv-purple-darker);
+    box-shadow: 0 6px 16px rgba(155, 89, 182, 40%);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.landing-button-primary {
+  background: #fff;
+  color: $yv-purple-dark;
+  font-weight: 700;
+
+  &:hover {
+    background: #f5f5f5;
+    color: $yv-purple-darker;
+  }
+}
+
+.landing-button-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid rgba(255, 255, 255, 40%);
+
+  &:hover {
+    background: rgba(255, 255, 255, 15%);
+    border-color: rgba(255, 255, 255, 60%);
+  }
+}
+
+// Mobile responsive adjustments
+@media (width <= 899px) {
+  .landing-split {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-map-side {
+    min-height: 70vh;
+    padding: 40px 24px;
+  }
+
+  .landing-signup-side {
+    min-height: 50vh;
+  }
+}

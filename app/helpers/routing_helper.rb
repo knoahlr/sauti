@@ -36,7 +36,13 @@ module RoutingHelper
   end
 
   def asset_host
-    Rails.configuration.action_controller.asset_host || root_url
+    return Rails.configuration.action_controller.asset_host if Rails.configuration.action_controller.asset_host.present?
+
+    options = ActionMailer::Base.default_url_options.symbolize_keys
+    options[:protocol] ||= Rails.configuration.x.use_https ? 'https' : 'http'
+    options[:only_path] = false
+
+    Rails.application.routes.url_helpers.root_url(options)
   end
 
   def frontend_asset_path(source, **)

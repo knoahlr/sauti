@@ -21,7 +21,7 @@ defaults: &defaults
   noindex: false
   theme: 'system'
   trends: true
-  trends_as_landing_page: true
+  trends_as_landing_page: false
   trendable_by_default: false
   disallowed_hashtags: # space separated string or list of hashtags without the hash
   bootstrap_timeline_accounts: ''
