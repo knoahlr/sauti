@@ -178,6 +178,7 @@ export default tseslint.config([
     'spec/**/*',
     'tmp/**/*',
     'vendor/**/*',
+    'app/javascript/vendor/**/*',
     'streaming/**/*',
     '.bundle/**/*',
   ]),

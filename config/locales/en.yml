@@ -1603,6 +1603,9 @@ en:
       confirm_visit: Are you sure you wish to open this link?
       hide_button: Hide
       label: Potentially sensitive content
+  landing:
+    meta_description: Join thousands of young Kenyans shaping our democratic future through civic discussions and county conversations.
+    page_title: Sauti - YouthVoices Civic Platform
   lists:
     errors:
       limit: You have reached the maximum number of lists

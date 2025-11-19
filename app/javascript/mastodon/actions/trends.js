@@ -75,14 +75,20 @@ export const fetchTrendingLinksFail = error => ({
   skipAlert: true,
 });
 
-export const fetchTrendingStatuses = () => (dispatch, getState) => {
-  if (getState().getIn(['status_lists', 'trending', 'isLoading'])) {
+export const fetchTrendingStatuses = ({ county, force = false } = {}) => (dispatch, getState) => {
+  if (getState().getIn(['status_lists', 'trending', 'isLoading']) && !force) {
     return;
   }
 
   dispatch(fetchTrendingStatusesRequest());
 
-  api().get('/api/v1/trends/statuses').then(response => {
+  const params = {};
+
+  if (county) {
+    params.county = county;
+  }
+
+  api().get('/api/v1/trends/statuses', { params: Object.keys(params).length ? params : undefined }).then(response => {
     const next = getLinks(response).refs.find(link => link.rel === 'next');
     dispatch(importFetchedStatuses(response.data));
     dispatch(fetchTrendingStatusesSuccess(response.data, next ? next.uri : null));

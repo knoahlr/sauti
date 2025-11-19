@@ -1,0 +1,15 @@
+!!!
+%html{ lang: I18n.locale }
+  %head
+    %meta{ charset: 'utf-8' }/
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1' }/
+    %title= content_for?(:page_title) ? yield(:page_title) : 'Sauti - YouthVoices Civic Platform'
+    = vite_client_tag
+    = vite_react_refresh_tag
+    = vite_polyfills_tag
+    = vite_stylesheet_tag 'styles/entrypoints/inert.scss', media: 'all', id: 'inert-style', crossorigin: 'anonymous'
+    = yield :header_tags
+    = vite_typescript_tag 'landing.tsx', crossorigin: 'anonymous'
+
+  %body.landing-page-body
+    = yield

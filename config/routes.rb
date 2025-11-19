@@ -16,7 +16,17 @@ def redirect_with_vary(path)
 end
 
 Rails.application.routes.draw do
-  root 'home#index'
+  authenticated :user do
+    root 'home#index', as: :authenticated_root
+  end
+
+  unauthenticated do
+    root 'landing#show', as: :unauthenticated_root
+  end
+
+  root to: 'landing#show'
+
+  get '/home', to: 'home#index', as: :home
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
 
