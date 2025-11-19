@@ -1,0 +1,7 @@
+# Development database credentials for Sauti.
+# Copy this file to ~/.sauti_env (or source it from your shell) and adjust values as needed.
+export DB_USER='sauti'
+export DB_NAME='sauti_database'
+export DB_PASS='panganga'
+export DB_HOST='127.0.0.1'
+export DB_PORT='5432'

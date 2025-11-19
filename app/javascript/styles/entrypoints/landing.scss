@@ -4,8 +4,8 @@ $yv-purple-dark: #8e44ad;
 $yv-purple-darker: #7d3c98;
 $yv-text-light: #f8f9fa;
 $yv-text-muted: rgba(255, 255, 255, 85%);
-$yv-bg-dark: #1a1a1a;
-$yv-bg-darker: #0f0f0f;
+$yv-bg-dark: #111019;
+$yv-bg-darker: #05050a;
 
 * {
   margin: 0;
@@ -23,35 +23,30 @@ $yv-bg-darker: #0f0f0f;
   overflow-x: hidden;
 }
 
-.landing-container {
-  min-height: 100vh;
-  width: 100%;
-}
-
 .landing-split {
   display: grid;
   grid-template-columns: 1fr;
   min-height: 100vh;
 
   @media (width >= 900px) {
-    grid-template-columns: 1.5fr 1fr;
+    grid-template-columns: 1.8fr 1fr;
   }
 }
 
 .landing-map-side {
-  background: $yv-bg-dark;
-  padding: 40px 24px;
+  background: radial-gradient(circle at top right, #1d1b2a 0%, $yv-bg-dark 60%);
+  padding: 48px 24px 48px clamp(24px, 5vw, 80px);
   display: flex;
   align-items: center;
   justify-content: center;
 
   @media (width >= 900px) {
-    padding: 60px 40px;
+    padding: 60px clamp(40px, 6vw, 120px);
   }
 }
 
 .landing-content {
-  max-width: 720px;
+  max-width: 960px;
   width: 100%;
 }
 
@@ -75,76 +70,61 @@ $yv-bg-darker: #0f0f0f;
 }
 
 .landing-map-wrapper {
-  background: rgba(155, 89, 182, 8%);
-  border-radius: 16px;
-  padding: 24px;
   margin-bottom: 24px;
-  border: 1px solid rgba(155, 89, 182, 20%);
+  position: relative;
+  min-height: clamp(360px, 65vh, 780px);
+  width: 100%;
+  overflow: hidden;
 
-  // Target the existing map component styles
   .about-sauti__map {
-    position: relative;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 0;
-    padding-bottom: 70%;
-    border-radius: 12px;
-    overflow: hidden;
-    background: rgba(148, 163, 184, 15%);
-
-    &--placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: rgba(15, 23, 42, 70%);
-      background: rgba(255, 255, 255, 75%);
-    }
+    height: 100%;
   }
 
   .about-sauti__leaflet {
-    position: absolute;
-    inset: 0;
-    border-radius: 12px;
-    background: linear-gradient(
-      135deg,
-      rgba(226, 232, 240, 45%),
-      rgba(203, 213, 225, 20%)
-    );
-    cursor: grab;
-
-    &:active {
-      cursor: grabbing;
-    }
-
-    .leaflet-interactive {
-      cursor: pointer;
-    }
-  }
-
-  .about-sauti__map-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgba(15, 23, 42, 78%);
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 92%),
-      rgba(255, 255, 255, 82%)
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 35% 25%,
+      #403b64,
+      #141225 55%,
+      #05050a
     );
   }
 
+  .about-sauti__map-overlay,
   .about-sauti__map-tooltip {
-    background: rgba(15, 23, 42, 90%);
+    display: none;
+  }
+
+  .about-sauti__map-label {
+    color: rgba(248, 249, 255, 92%);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow:
+      0 0 10px rgba(5, 5, 10, 70%),
+      0 4px 12px rgba(0, 0, 0, 85%);
+    letter-spacing: 0.05em;
+  }
+
+  .leaflet-control-zoom {
     border: none;
-    color: #fff;
-    font-size: 12px;
-    padding: 6px 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 45%);
+    overflow: hidden;
+
+    a {
+      background: rgba(10, 10, 20, 80%);
+      color: #f1e8ff;
+      border: 1px solid rgba(255, 255, 255, 5%);
+
+      &:hover {
+        background: rgba(155, 89, 182, 85%);
+        color: #fff;
+      }
+    }
   }
 }
 
@@ -157,7 +137,7 @@ $yv-bg-darker: #0f0f0f;
 }
 
 .landing-signup-side {
-  background: linear-gradient(135deg, $yv-purple 0%, $yv-purple-dark 100%);
+  background: linear-gradient(165deg, $yv-purple-darker, $yv-purple-dark 70%);
   padding: 40px 24px;
   display: flex;
   align-items: center;
@@ -259,7 +239,11 @@ $yv-bg-darker: #0f0f0f;
     grid-template-columns: 1fr;
   }
 
-  .landing-map-side,
+  .landing-map-side {
+    min-height: 70vh;
+    padding: 40px 24px;
+  }
+
   .landing-signup-side {
     min-height: 50vh;
   }

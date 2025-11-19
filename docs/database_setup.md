@@ -63,3 +63,10 @@ RAILS_ENV=test bin/rails db:prepare
 ```
 
 Always run migrations as the same database user you created above to avoid permission issues.
+
+## Helper Scripts & Environment Files
+
+- `bin/sb` — a thin wrapper that lets you call `sb setup` or `sb dev` from anywhere on your machine. It resolves the repository path automatically (override with `SAUTI_ROOT=/path/to/sauti`). Add `bin/` to your `PATH` or symlink `sb` somewhere convenient.
+- `config/sauti_env.example` — sample shell exports for `DB_*` variables. Copy it to `~/.sauti_env`, tweak the values, and `source ~/.sauti_env` (or add it to your shell profile) so `bin/setup`, Sidekiq, and other processes pick up the credentials.
+
+Using these helpers keeps local onboarding consistent, especially on multi-project hosts where the repository might not live under `$HOME/repo/code/sauti`.
